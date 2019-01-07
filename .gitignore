@@ -4,6 +4,8 @@ deps
 tts
 __pycache__
 
+appdaemon/compiled
+
 .ios.conf
 .ring_cache.pickle
 ecobee.conf

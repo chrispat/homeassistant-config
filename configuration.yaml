@@ -138,8 +138,11 @@ influxdb:
 cloud:
   alexa:
     filter:
+      include_entities:
+        group.all_lights
+        group.all_main_floor_lights
+        group.all_outside_lights
       include_domains:
-        - group
         - light
         - switch
 
