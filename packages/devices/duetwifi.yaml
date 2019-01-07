@@ -4,7 +4,9 @@ homeassistant:
       friendly_name: DuetWifi Status
     sensor.duetwifi_bed_temp:
       friendly_name: DuetWifi Bed Temp
+      unit_of_measurement: "°C"
     sensor.duetwifi_extruder_temp:
+      unit_of_measurement: °C
       friendly_name: DuetWifi Extruder Temp
 
 sensor:
@@ -19,8 +21,10 @@ sensor:
   - platform: template
     sensors:
       duetwifi_bed_temp:
+        device_class: temperature
         unit_of_measurement: "°C"
         value_template: "{{ state_attr('sensor.duetwifi_status', 'bedTemp') }}"
       duetwifi_extruder_temp:
+        device_class: temperature
         unit_of_measurement: "°C"
         value_template: "{{ state_attr('sensor.duetwifi_status', 'extruderTemp') }}"

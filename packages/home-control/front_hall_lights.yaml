@@ -3,6 +3,7 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.front_hall_motion_sensor
+      from: 'off'
       to: 'on'
     condition:
       condition: state
@@ -16,24 +17,10 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.front_hall_motion_sensor
+      from: 'on'
       to: 'off'
       for:
         minutes: 5
     action:
       service: homeassistant.turn_off
       entity_id: switch.front_hall_lights
-
-  # - alias: Front hall - Force check off every 5m
-  #   trigger:
-  #     platform: time
-  #     minutes: '/5'
-  #     seconds: 00
-  #   condition:
-  #     condition: state
-  #     entity_id: binary_sensor.front_hall_motion_sensor
-  #     state: 'off'
-  #     for:
-  #       minutes: 5
-  #   action:
-  #     service: homeassistant.turn_off
-  #     entity_id: light.front_hall_lights

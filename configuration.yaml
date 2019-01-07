@@ -14,16 +14,6 @@ homeassistant:
    - type: trusted_networks
 
 ########################################################
-# Panel
-########################################################
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
-
-########################################################
 # Enabled components
 ########################################################
 config:
@@ -87,28 +77,6 @@ shell_command:
   lovelace_gen: 'python /config/lovelace-gen.py'
 zeroconf:
 
-########################################################
-# Custom iFrames
-########################################################
-# panel_iframe:
-
-########################################################
-# Scenes
-########################################################
-# scene:
-#   - name: Morning Lights
-#     entities:
-#       light.kitchen_lights: 
-#         state: on
-#         brightness: 50   # 0-255
-#       light.living_room_floor_lamp: on
-#   - name: Evening Lights
-#     entities:
-#       light.kitchen_lights: 
-#         state: on
-#         brightness: 50   # 0-255
-#       light.living_room_floor_lamp: on
-
 weblink:
   entities:
     - name: Grafana
@@ -125,6 +93,16 @@ logger:
   default: warn
   logs:
     homeassistant.components.mqtt: debug
+
+########################################################
+# Panels
+########################################################
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
 
 ########################################################
 # Text to Speech
@@ -161,6 +139,7 @@ cloud:
   alexa:
     filter:
       include_domains:
+        - group
         - light
         - switch
 
@@ -184,10 +163,9 @@ sun:
 
 
 ########################################################
-# Includes
+# Standard includes
 ########################################################
-automation 1: !include_dir_merge_list automations
-automation 2: !include automations.yaml
+automation: !include automations.yaml
 group: !include includes/group.yaml
 script: !include includes/script.yaml
 sensor: !include includes/sensor.yaml

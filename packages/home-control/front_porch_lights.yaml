@@ -46,6 +46,8 @@ automation:
     trigger:
       platform: state
       entity_id: sensor.ring_front_door_last_motion
+      from: 'off'
+      to: 'on'
     condition:
       condition: or
       conditions:
@@ -61,6 +63,7 @@ automation:
     trigger:
       platform: state
       entity_id: sensor.ring_front_door_last_motion
+      from: 'on'
       to: 'off'
       for:
         minutes: 5
@@ -72,6 +75,8 @@ automation:
     trigger:
       platform: state
       entity_id: binary_sensor.front_door_contact_sensor
+      from: 'off'
+      to: 'on'
     condition:
       condition: state
       entity_id: sun.sun

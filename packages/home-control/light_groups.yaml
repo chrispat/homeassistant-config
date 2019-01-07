@@ -1,0 +1,32 @@
+group:
+  all_basement_lights:
+    entities:
+      - light.basement_bathroom_lights
+      - light.basement_bedroom_ceiling_light
+      - light.basement_hall
+      - light.basement_hanging_light
+      - light.basement_rear_lights
+      - light.basement_room_front_lights
+      - light.basement_stairs_aux_switch_2
+      - light.basement_stairs_lights
+      - switch.basement_bath_fan
+      - switch.basement_stairs_aux_switch
+      - switch.basement_storage_lights
+
+  all_main_floor_lights:
+    entities:
+      - light.front_hall_table_lamp
+      - light.guest_bedroom_lights
+      - light.kitchen_lights
+      - light.kitchen_table_lights
+      - light.living_room_floods
+      - light.living_room_hanging_light
+      - switch.front_hall_lights
+      - switch.garage_lights
+      - switch.kitchen_foyer_lights
+      - switch.living_room_floor_lamp
+
+  all_outside_lights:
+    entities:
+      - switch.back_porch_lights
+      - switch.front_porch_lights

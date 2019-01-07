@@ -130,4 +130,3 @@ zwave:
       refresh_value: true
       polling_intensity: 1
       delay: 5
-      

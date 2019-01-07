@@ -6,5 +6,16 @@ cards:
       # title: All Lights & Switches
     filter:
       include:
+        - entity_id: group.all_lights
+        - entity_id: group.all_basement_lights
+        - entity_id: group.all_main_floor_lights
+        - entity_id: group.all_outside_lights
+        # - entity_id: group.all_upstairs_lights
+  - type: custom:monster-card
+    card:
+      type: entities
+      # title: All Lights & Switches
+    filter:
+      include:
         - domain: light
         - domain: switch
