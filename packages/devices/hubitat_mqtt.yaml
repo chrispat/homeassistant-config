@@ -1,0 +1,123 @@
+homeassistant:
+  customize:
+    binary_sensor.front_hall_motion_sensor:
+      friendly_name: Front Hall Motion Sensor
+    binary_sensor.garage_motion_sensor:
+      friendly_name: Garage Motion Sensor
+    binary_sensor.upstairs_motion_sensor:
+      friendly_name: Upstairs Motion Sensor
+    sensor.upstairs_hall_temp:
+      friendly_name: Upstairs Hall Temp
+
+# Binary Sensors from Hubitat
+#
+# hubitat/Front door contact sensor/contact/state
+# hubitat/Front Hall Motion Sensor/motion/state
+# hubitat/Garage door/contact/state
+# hubitat/Garage exterior door sensor/contact/state
+# hubitat/Garage interior door sensor/contact/state
+# hubitat/Garage Motion Sensor/motion/state
+# hubitat/Upstairs Motion sensor/motion/state
+binary_sensor:
+  - name: front_hall_motion_sensor
+    platform: mqtt
+    device_class: motion
+    state_topic: "hubitat/Front Hall Motion Sensor/motion/state"
+    payload_on: "active"
+    payload_off: "inactive"
+    retain: true
+
+  - name: garage_door_contact_sensor
+    platform: mqtt
+    device_class: door
+    state_topic: "hubitat/Garage door/contact/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+  - name: garage_exterior_door_contact_sensor
+    platform: mqtt
+    device_class: door
+    state_topic: "hubitat/Garage exterior door sensor/contact/state"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+  - name: garage_motion_sensor
+    platform: mqtt
+    device_class: motion
+    state_topic: "hubitat/Garage Motion Detector/motion/state"
+    payload_on: "active"
+    payload_off: "inactive"
+    retain: true
+
+  - name: upstairs_motion_sensor
+    platform: mqtt
+    device_class: motion
+    state_topic: "hubitat/Upstairs Motion Sensor/motion/state"
+    payload_on: "active"
+    payload_off: "inactive"
+    retain: true
+
+
+#
+# Measurement sensors from Hubitat
+#
+# hubitat/Front Hall Motion Sensor/battery/state
+# hubitat/Front Hall Motion Sensor/temperature/state
+# hubitat/Garage exterior door sensor/battery/state
+# hubitat/Garage interior door sensor/battery/state
+# hubitat/Garage Motion Sensor/battery/state
+# hubitat/Upstairs Motion Sensor/battery/state
+# hubitat/Upstairs Motion Sensor/temperature/state
+#
+sensor:
+  - name: front_hall_motion_sensor_battery
+    platform: mqtt
+    device_class: battery
+    state_topic: "hubitat/Front Hall Motion Sensor/battery/state"
+    unit_of_measurement: "%"
+    retain: true
+
+  - name: front_hall_temp
+    platform: mqtt
+    unit_of_measurement: "°F"
+    device_class: temperature
+    state_topic: "hubitat/Front Hall Motion Sensor/temperature/state"
+    retain: true
+
+  - name: garage_exterior_door_contact_sensor_battery
+    platform: mqtt
+    device_class: battery
+    state_topic: "hubitat/Garage exterior door sensor/battery/state"
+    unit_of_measurement: "%"
+    retain: true
+
+  - name: garage_interior_door_contact_sensor_battery
+    platform: mqtt
+    device_class: battery
+    state_topic: "hubitat/Garage interior door sensor/battery/state"
+    unit_of_measurement: "%"
+    retain: true
+
+  - name: garage_motion_sensor_battery
+    platform: mqtt
+    device_class: battery
+    state_topic: "hubitat/Garage Motion Detector/battery/state"
+    unit_of_measurement: "%"
+    retain: true
+
+  - name: upstairs_hall_motion_sensor_battery
+    platform: mqtt
+    device_class: battery
+    state_topic: "hubitat/Upstairs Motion Sensor/battery/state"
+    unit_of_measurement: "%"
+    retain: true
+
+  - name: upstairs_hall_temp
+    platform: mqtt
+    unit_of_measurement: "°F"
+    device_class: temperature
+    state_topic: "hubitat/Upstairs Motion Sensor/temperature/state"
+    retain: true
+  

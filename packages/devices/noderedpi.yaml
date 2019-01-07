@@ -1,0 +1,11 @@
+homeassistant:
+  customize:
+    sensor.noderedpi_temp:
+      friendly_name: "Node-red-pi Temp"
+
+sensor:
+  - platform: mqtt
+    name: noderedpi_temp
+    unit_of_measurement: "°F"
+    device_class: temperature
+    state_topic: "network/node-red-pi/temp"

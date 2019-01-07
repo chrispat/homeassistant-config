@@ -1,0 +1,26 @@
+homeassistant:
+  customize:
+    sensor.duetwifi_status:
+      friendly_name: DuetWifi Status
+    sensor.duetwifi_bed_temp:
+      friendly_name: DuetWifi Bed Temp
+    sensor.duetwifi_extruder_temp:
+      friendly_name: DuetWifi Extruder Temp
+
+sensor:
+  - platform: mqtt
+    name: duetwifi_status
+    state_topic: "network/duetwifi/status"
+    value_template: "{{ value_json.status }}"
+    json_attributes:
+      - bedTemp
+      - extruderTemp
+
+  - platform: template
+    sensors:
+      duetwifi_bed_temp:
+        unit_of_measurement: "°C"
+        value_template: "{{ state_attr('sensor.duetwifi_status', 'bedTemp') }}"
+      duetwifi_extruder_temp:
+        unit_of_measurement: "°C"
+        value_template: "{{ state_attr('sensor.duetwifi_status', 'extruderTemp') }}"

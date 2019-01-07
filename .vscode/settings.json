@@ -1,0 +1,9 @@
+{
+    "ssh.server": [
+        {
+            "servername": "hassio.lan",
+            "host": "hassio.lan",
+            "username": "root"
+        }
+    ]
+}

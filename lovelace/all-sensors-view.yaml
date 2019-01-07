@@ -1,0 +1,26 @@
+title: Sensors
+cards:
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: Binary Sensors
+    filter:
+      include:
+        - domain: binary_sensor
+      exclude:
+        - domain: binary_sensor
+          attributes:
+            hidden: true
+
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: Sensors
+    filter:
+      include:
+        - domain: sensor
+      exclude:
+        - domain: sensor
+          attributes:
+            hidden: true
+

@@ -1,0 +1,14 @@
+---
+Basement Stair Light:
+  module: automatic_lights
+  class: MotionLights
+  delay: '300'
+  dependencies: globals
+  entity_off: light.basement_stairs_lights
+  entity_on: light.basement_stairs_lights
+  motion_sensor: binary_sensor.basement_stairs_motion_sensor
+  # Optional
+  # constrain_end_time: 04:29:59
+  # constrain_input_select: input_select.house_mode,Night
+  # constrain_presence: anyone
+  # constrain_start_time: '20:00:00'

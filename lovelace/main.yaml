@@ -1,0 +1,88 @@
+resources:
+  - url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
+    type: js
+  - url: /local/custom-lovelace/thermostat-card/thermostat-card.js?v=0.1.1
+    type: module
+  - url: /local/custom-lovelace/entity-attributes-card/entity-attributes-card.js?v=0.1.1
+    type: js
+  - url: /local/custom-lovelace/plan-coordinates/plan-coordinates.js?v=0.1.0
+    type: js
+  - url: /local/custom-lovelace/alarm_control_panel-card/alarm_control_panel-card.js?v=0.4.0
+    type: js
+  - url: /local/mini-media-player-bundle.js?v=0.9.8
+    type: js
+  - url: /local/tracker-card.js?v=0.1.5
+    type: js
+  - url: /local/vertical-stack-in-card/vertical-stack-in-card.js?v=0.1.0
+    type: js
+
+title: My Home
+views:
+  - !include home-view.yaml
+  - !include main-floor-view.yaml
+  - !include all-lights-view.yaml
+  - !include all-batteries-view.yaml
+  - !include all-media-players-view.yaml
+  - !include bmw-x3-view.yaml
+  - !include all-sensors-view.yaml
+  - !include all-automations-view.yaml
+  
+  - title: Groups
+    cards:
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Groups
+        filter:
+          include:
+            - domain: group
+
+  - title: Z-Wave
+    cards:
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Z-Wave
+        filter:
+          include:
+            - domain: zwave
+
+  - title: Updates
+    cards:
+      - type: custom:tracker-card
+        title:
+        trackers:
+          - sensor.custom_card_tracker
+          - sensor.custom_component_tracker
+  
+  - title: Other
+    cards:
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Locks
+        filter:
+          include:
+            - domain: lock
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Scenes
+        filter:
+          include:
+            - domain: scene
+
+      - type: entities
+        title: Sun
+        show_header_toggle: true
+        entities:
+          - sun.sun
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Zones
+        filter:
+          include:
+            - domain: zone

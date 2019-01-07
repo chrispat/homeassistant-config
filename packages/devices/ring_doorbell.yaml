@@ -1,0 +1,37 @@
+homeassistant:
+  customize:
+    
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+# Enable the camera as a device in HA
+# camera:
+# - platform: ring
+
+group:
+  ring_doorbell:
+    name: Ring Doorbell
+    control: hidden
+    entities:
+      - binary_sensor.ring_front_door_ding
+      - binary_sensor.ring_front_door_motion
+      # - camera.ring_front_door
+      - sensor.ring_front_door_battery
+
+sensor:
+  - platform: ring
+    # Uncomment to only monitor specific sensor types (default: show all)
+    monitored_conditions:
+      - battery
+    #   - last_activity
+      - last_ding
+      - last_motion
+    #   - volume
+
+binary_sensor:
+  - platform: ring
+    monitored_conditions:
+      - ding
+      - motion

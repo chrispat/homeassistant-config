@@ -1,0 +1,6 @@
+light.basement_hall:
+  ignored: false
+  polling_intensity: 0
+light.basement_bedroom_ceiling_light:
+  ignored: false
+  polling_intensity: 0

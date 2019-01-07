@@ -1,0 +1,70 @@
+# - the disarmed state never triggers the alarm;
+# - the armed_home state will leave no time to leave the building or disarm the alarm;
+# - other states state will give 30 seconds to leave the building before triggering the alarm, 
+#   and 20 seconds to disarm the alarm when coming back.
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    # code: 1234
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+
+notify:
+  - name: alarm_group
+    platform: group
+    services:
+      - service: ios_peters_iphone
+      - service: telegram_peter
+
+group:
+  all_exterior_contact_sensors:
+    entities:
+      - binary_sensor.back_door_contact_sensor
+      - binary_sensor.front_door_contact_sensor
+      - binary_sensor.garage_door_contact_sensor
+      - binary_sensor.garage_exterior_door_contact_sensor
+      - binary_sensor.garage_interior_door_contact_sensor
+
+automation:
+  - alias: 'Alarm - Send notification when alarm triggered'
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.home_alarm
+        to: 'triggered'
+    action:
+      - service: notify.alarm_group
+        data:
+          message: "ALARM! The alarm has been triggered"
+          title: "ALARM"
+      - service: persistent_notification.create
+        data:
+          message: "ALARM! The alarm has been triggered"
+          title: "ALARM"
+          notification_id: alarm_triggered
+
+  - alias: 'Alarm - Triggers for armed away'
+    trigger:
+      - platform: state
+        entity_id: group.all_exterior_contact_sensors
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.ha_alarm
+        state: armed_away
+    action:
+      service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.ha_alarm
+
+  # - alias: "Alarm - Dismiss notification when alarm reset"
+  #   trigger:
+  #   condition:
+  #   action:
+  #     - service: persistent_notification.dismiss
+  #       data:
+  #         notification_id: zwave

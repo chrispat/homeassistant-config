@@ -1,0 +1,71 @@
+homeassistant:
+  customize:
+    binary_sensor.living_room_occupancy:
+      device_class: occupancy
+      friendly_name: Living Room Occupancy
+    light.all_living_room_lights:
+      icon: mdi:rhombus-split
+    
+
+automation:
+  - alias: "Living room - Every 5m update binary_sensor.living_room_motion_in_last_30m"
+    trigger:
+      - platform: time
+        minutes: '/5'
+        seconds: 0
+    action:
+      - service: homeassistant.update_entity
+        entity_id: binary_sensor.living_room_motion_in_last_30m
+
+# Jinja stuff
+# Last 30m test: {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.living_room_motion_sensor.last_updated)) < 30*60 }}
+#
+# binary_sensor.living_room_motion_in_last_30m: {{ states('binary_sensor.living_room_motion_in_last_30m') }}
+#
+# binary_sensor.living_room_motion_in_last_30m.last_updated: {{ states.binary_sensor.living_room_motion_in_last_30m.last_updated }}
+#
+# binary_sensor.living_room_occupancy.last_updated: {{ states.binary_sensor.living_room_occupancy.last_updated}}
+
+binary_sensor:
+  - platform: template
+    sensors:
+      living_room_motion_in_last_30m:
+        device_class: motion
+        entity_id: []
+        value_template: "{{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.living_room_motion_sensor.last_updated)) < 30*60 }}"
+  - platform: bayesian
+    name: living_room_occupancy
+    prior: 0.65
+    observations:
+      - entity_id: light.kitchen_lights
+        prob_given_true: 0.65
+        prob_given_false: 0.25
+        platform: state
+        to_state: 'on'
+      - entity_id: media_player.living_room_tv
+        prob_given_true: 0.75
+        prob_given_false: 0.25
+        platform: state
+        to_state: 'on'
+      - entity_id: switch.living_room_floor_lamp
+        prob_given_true: 0.70
+        prob_given_false: 0.30
+        platform: state
+        to_state: 'on'
+      - entity_id: binary_sensor.living_room_motion_in_last_30m
+        prob_given_true: 1.00
+        prob_given_false: 0.30
+        platform: state
+        to_state: 'on'
+      - entity_id: binary_sensor.living_room_motion_sensor
+        prob_given_true: 0.90
+        prob_given_false: 0.30
+        platform: state
+        to_state: 'on'
+
+light:
+  - platform: group
+    name: All Living Room Lights
+    entities:
+      - light.living_room_floor_lamp
+      - light.living_room_floods

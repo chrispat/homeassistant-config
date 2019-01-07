@@ -1,0 +1,72 @@
+###########################################################
+# This is the primary mode state machine.
+#
+# Automatic mode changes only happen if mode is not away
+#
+# State:
+#   - input_select.house_mode
+#
+input_select:
+  house_mode:
+    name: House Mode
+    options:
+      - Morning     # 06:00
+      - Day         # 10:00
+      - Evening     # 18:00
+      - Night       # 11:00
+      - Away
+
+automation:
+  - alias: "Modes - Set mode to Morning at 6:00am"
+    trigger:
+      - platform: time
+        at: "06:00"
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('input_select.house_mode', 'Away') }}"
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.house_mode
+        data:
+          option: Morning
+
+  - alias: "Modes - Set mode to Day at 10:00am"
+    trigger:
+      - platform: time
+        at: "10:00"
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('input_select.house_mode', 'Away') }}"
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.house_mode
+        data:
+          option: Day
+
+  - alias: "Modes - Set mode to Evening at 6:00pm or sunset"
+    trigger:
+      - platform: time
+        at: "18:00"
+      - platform: sun
+        event: sunset
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('input_select.house_mode', 'Away') }}"
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.house_mode
+        data:
+          option: Evening
+
+  - alias: "Modes - Set mode to Night at 11:00pm"
+    trigger:
+      - platform: time
+        at: "23:00"
+    condition:
+      - condition: template
+        value_template: "{{ not is_state('input_select.house_mode', 'Away') }}"
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.house_mode
+        data:
+          option: Night

@@ -1,0 +1,57 @@
+homeassistant:
+  customize:
+    binary_sensor.homenas_freespace_1_low:
+      hidden: true
+    binary_sensor.homenas_freespace_2_low:
+      hidden: true
+
+sensor:
+  - platform: mqtt
+    name: homenas_freespace_1
+    unit_of_measurement: "GB"
+    state_topic: "network/home-nas/dev/dm-0/freespace"
+
+  - platform: mqtt
+    name: homenas_freespace_2 
+    unit_of_measurement: "GB"
+    state_topic: "network/home-nas/dev/sda1/freespace"
+
+binary_sensor:
+  - platform: threshold
+    name: homenas_freespace_1_low
+    entity_id: sensor.homenas_freespace_1
+    device_class: problem
+    lower: 25
+
+  - platform: threshold
+    name: homenas_freespace_2_low
+    entity_id: sensor.homenas_freespace_2
+    device_class: problem
+    lower: 25
+
+alert:
+  homenas_freespace_1_alert:
+    name: "Freespace alert - Home-nas main drive"
+    message: "Low disk space warning - homenas main drive"
+    done_message: "Low disk space warning cleared - homenas main drive"
+    entity_id: binary_sensor.homenas_freespace_1_low
+    state: 'on'
+    repeat:
+      - 15
+      - 30
+      - 60
+    notifiers:
+      - telegram_peter
+
+  homenas_freespace_2_alert:
+    name: "Freespace alert - Home-nas secondary drive"
+    message: "Low disk space warning - homenas secondary drive"
+    done_message: "Low disk space warning cleared - homenas secondary drive"
+    entity_id: binary_sensor.homenas_freespace_2_low
+    state: 'on'
+    repeat:
+      - 15
+      - 30
+      - 60
+    notifiers:
+      - telegram_peter

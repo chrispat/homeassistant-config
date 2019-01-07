@@ -1,0 +1,23 @@
+title: Automation
+cards:
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: Automations
+    filter:
+      include:
+        - domain: automation
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: Scripts
+    filter:
+      include:
+        - domain: script
+  - type: custom:monster-card
+    card:
+      type: entities
+      title: Alerts
+    filter:
+      include:
+        - domain: alert

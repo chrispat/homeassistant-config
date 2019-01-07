@@ -1,0 +1,39 @@
+automation:
+  - alias: Front hall - On when motion (after sunset)
+    trigger:
+      platform: state
+      entity_id: binary_sensor.front_hall_motion_sensor
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    action:
+      service: homeassistant.turn_on
+      entity_id: switch.front_hall_lights
+
+  - alias: Front hall - Off when no motion for 5m (before sunrise)
+    trigger:
+      platform: state
+      entity_id: binary_sensor.front_hall_motion_sensor
+      to: 'off'
+      for:
+        minutes: 5
+    action:
+      service: homeassistant.turn_off
+      entity_id: switch.front_hall_lights
+
+  # - alias: Front hall - Force check off every 5m
+  #   trigger:
+  #     platform: time
+  #     minutes: '/5'
+  #     seconds: 00
+  #   condition:
+  #     condition: state
+  #     entity_id: binary_sensor.front_hall_motion_sensor
+  #     state: 'off'
+  #     for:
+  #       minutes: 5
+  #   action:
+  #     service: homeassistant.turn_off
+  #     entity_id: light.front_hall_lights

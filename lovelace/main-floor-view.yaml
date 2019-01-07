@@ -1,0 +1,89 @@
+title: Main Floor
+# panel: true
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:plan-coordinates
+      - type: picture-elements
+        image: /local/images/floorplan/main-floor.png?v=1
+        elements:
+          - type: service-button
+            title: Reload
+            service: shell_command.lovelace_gen
+            style:
+              left: 10%
+              top: 6%
+              background-color: "#dddddd"
+            
+          # Back porch lights
+          - type: state-icon
+            entity: switch.back_porch_lights
+            style:
+              left: 8%
+              top: 82%
+          
+          # Front Hall Lights
+          - type: state-icon
+            entity: switch.front_hall_lights
+            style:
+              left: 78%
+              top: 55%
+          - type: state-icon
+            entity: light.front_hall_table_lamp
+            style:
+              left: 72%
+              top: 55%
+          
+          # Front Porch Lights
+          - type: state-icon
+            entity: switch.front_porch_lights
+            style:
+              left: 96%
+              top: 55%
+
+
+          # Garage Lights
+          - type: state-icon
+            entity: switch.garage_lights
+            style:
+              left: 75%
+              top: 25%
+
+          # Guest Bedroom Lights          
+          - type: state-icon
+            entity: light.guest_bedroom_lights
+            style:
+              left: 12%
+              top: 15%
+
+          # Kitchen Foyer Lights
+          - type: state-icon
+            entity: switch.kitchen_foyer_lights
+            style:
+              left: 43.5%
+              top: 54%
+
+          # Kitchen Lights
+          - type: state-icon
+            entity: light.kitchen_lights
+            style:
+              left: 43.5%
+              top: 75%
+
+
+          # Living Room Lights
+          - type: state-icon
+            entity: light.living_room_floods
+            style:
+              left: 14%
+              top: 50%
+          - type: state-icon
+            entity: light.living_room_hanging_light
+            style:
+              left: 19%
+              top: 50%
+          - type: state-icon
+            entity: switch.living_room_floor_lamp
+            style:
+              left: 24%
+              top: 50%

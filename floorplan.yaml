@@ -1,0 +1,28 @@
+name: Demo Floorplan
+image: /local/custom_ui/floorplan/floorplan.svg?v=1
+stylesheet: /local/custom_ui/floorplan/floorplan.css
+warnings:
+pan_zoom:
+groups:
+  - name: Lights
+    entities:
+        - light.front_hall_table_lamp
+        - light.guest_bedroom_lights
+        - light.kitchen_lights
+        - light.kitchen_table_lights
+        - light.living_room_floods
+        - light.living_room_hanging_light
+        - switch.back_porch_lights
+        - switch.front_hall_lights
+        - switch.front_porch_lights
+        - switch.garage_lights
+        - switch.kitchen_foyer_lights
+        - switch.living_room_floor_lamp
+    states:
+      - state: 'on'
+        class: 'light-on'
+      - state: 'off'
+        class: 'light-off'
+    action:
+      domain: homeassistant   # This optional parameter allows you to use other services such as homeassistant.toggle like here.
+      service: toggle

@@ -1,0 +1,61 @@
+homeassistant:
+  customize_glob:
+    "sensor.dark_sky_*":
+      hidden: true
+  customize:
+    group.dark_sky_sensors:
+      hidden: true
+    weather.dark_sky:
+      # This doesn't seem to work (in Lovelace) but I don't know why...
+      # I was trying to fix that MDI doesn't have an icon called weather-clear-night
+      icon_template: >
+        {% if is_state("weather.dark_sky", "clear-night") %}
+          night
+        {% else %}
+          {{ states('weather.dark_sky') }}
+        {% end if %}'
+
+group:
+  dark_sky_sensors:
+    name: Dark Sky Sensors
+    entities:
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_daily_high_temperature_0
+      - sensor.dark_sky_daily_low_temperature_0
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_humidity_0
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_icon_0
+      - sensor.dark_sky_precip
+      - sensor.dark_sky_precip_0
+      - sensor.dark_sky_precip_intensity
+      - sensor.dark_sky_precip_intensity_0
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_precip_probability_0
+      - sensor.dark_sky_pressure
+      - sensor.dark_sky_pressure_0
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_temperature_0
+      - sensor.dark_sky_wind_bearing
+      - sensor.dark_sky_wind_bearing_0
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_wind_speed_0
+
+sensor:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    forecast:
+      - 0
+    monitored_conditions:
+      - temperature
+      - apparent_temperature
+      - temperature_min
+      - temperature_max
+      - humidity
+      - precip_probability
+      - precip_intensity
+      - precip_type
+      - wind_speed
+      - wind_bearing
+      - pressure
+      - icon

@@ -1,0 +1,46 @@
+  title: Home
+  cards:
+    - type: custom:monster-card
+      card:
+        type: entities
+        title: Inputs
+      filter:
+        include:
+          - domain: input_select
+
+    - type: custom:alarm_control_panel-card
+      entity: alarm_control_panel.home_alarm
+      show_keypad: false
+
+    - type: custom:monster-card
+      card:
+        type: glance
+        title: Device Trackers
+      filter:
+        include:
+          - domain: device_tracker
+        exclude:
+          - entity_id: device_tracker.life360_peter_provost
+          - entity_id: device_tracker.peters_iphone
+
+    - type: custom:vertical-stack-in-card
+      cards:
+        - type: thermostat
+          entity: climate.master_bedroom
+        - type: glance
+          entities:
+            - sensor.hadleys_room_temperature
+            - sensor.finns_room_temperature
+            - sensor.dads_office_temperature
+
+    - type: weather-forecast
+      entity: weather.dark_sky
+
+    - type: custom:monster-card
+      card:
+        type: entities
+        title: Weblinks
+      filter:
+        include:
+          - domain: weblink
+

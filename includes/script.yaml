@@ -1,0 +1,13 @@
+message_temperature:
+  alias: Test Msg to Peter's Phone
+  sequence:
+    - service: notify.ios_peters_iphone
+      data:
+        message: Current front hall temp is {{ states.sensor.front_hall_temp }}
+
+reload_lovelace:
+  alias: Reload Lovelace
+  sequence:
+    - service: shell_command.lovelace_gen
+    - delay: '00:00:03'
+    - service: homeassistant.reload_core_config

@@ -1,0 +1,10 @@
+title: Lights & Switches
+cards:
+  - type: custom:monster-card
+    card:
+      type: entities
+      # title: All Lights & Switches
+    filter:
+      include:
+        - domain: light
+        - domain: switch

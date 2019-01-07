@@ -1,0 +1,34 @@
+title: Batteries
+cards:
+  - type: custom:monster-card
+    show_empty: false
+    card:
+      type: entities
+      title: Critical Battery Devices
+    filter:
+      include:
+        - entity_id: "*_battery"
+        - entity_id: "*_battery_level"
+      exclude:
+        - state: '>= 20'
+  - type: custom:monster-card
+    show_empty: false
+    card:
+      type: entities
+      title: Low Battery Devices
+    filter:
+      include:
+        - entity_id: "*_battery"
+        - entity_id: "*_battery_level"
+      exclude:
+        - state: '< 20'
+        - state: '>= 50'
+  - type: custom:monster-card
+    show_empty: true
+    card:
+      type: glance
+      title: All Battery Powered Devices
+    filter:
+      include:
+        - entity_id: "*_battery"
+        - entity_id: "*_battery_level"

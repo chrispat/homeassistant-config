@@ -1,0 +1,81 @@
+# Timeline
+#
+#   Before              motion activated, 5m on
+#   Sunrise - 1 hour    on
+#   Sunrise             off
+#   Sunset              on
+#   11pm                off
+#   After               motion activated, 5m on
+#
+
+automation:
+  - alias: Front porch - On at 1 hr before sunrise
+    trigger:
+      platform: sun
+      event: sunrise
+      offset: '-01:00:00'
+    action:
+      service: switch.turn_on
+      entity_id: switch.front_porch_lights
+
+  - alias: Front porch - Off at sunrise
+    trigger:
+      platform: sun
+      event: sunrise
+    action:
+      service: switch.turn_off
+      entity_id: switch.front_porch_lights
+
+  - alias: Front porch - On at sunset
+    trigger:
+      platform: sun
+      event: sunset
+    action:
+      service: switch.turn_on
+      entity_id: switch.front_porch_lights
+
+  - alias: Front porch - Off at 11:00pm
+    trigger:
+      platform: time
+      at: '23:00:00'
+    action:
+      service: switch.turn_off
+      entity_id: switch.front_porch_lights
+
+  - alias: Front porch - On when motion (at night)
+    trigger:
+      platform: state
+      entity_id: sensor.ring_front_door_last_motion
+    condition:
+      condition: or
+      conditions:
+        - condition: sun
+          before: 'sunrise'
+        - condition: time
+          after: '23:00:00'
+    action:
+      service: switch.turn_on
+      entity_id: switch.front_porch_lights
+
+  - alias: Front porch - Off after 5m no motion (at night)
+    trigger:
+      platform: state
+      entity_id: sensor.ring_front_door_last_motion
+      to: 'off'
+      for:
+        minutes: 5
+    action:
+      service: switch.turn_off
+      entity_id: switch.front_porch_lights
+
+  - alias: Front porch lights - On when door opened (at night)
+    trigger:
+      platform: state
+      entity_id: binary_sensor.front_door_contact_sensor
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    action:
+      service: switch.turn_on
+      entity_id: switch.front_porch_lights

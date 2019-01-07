@@ -1,0 +1,133 @@
+homeassistant:
+  customize:
+    binary_sensor.back_door_contact_sensor:
+      device_class: door
+    binary_sensor.front_door_contact_sensor:
+      device_class: door
+    binary_sensor.garage_interior_door_contact_sensor:
+      device_class: door
+    light.front_hall_table_lamp:
+      icon: mdi:lamp
+    light.living_room_hanging_light:
+      icon: mdi:ceiling-light
+    light.living_room_floods:
+      icon: mdi:spotlight-beam
+    switch.front_hall_lights:
+      icon: mdi:ceiling-light
+    switch.living_room_floor_lamp:
+      icon: mdi:floor-lamp
+    switch.garage_lights:
+      icon: mdi:lightbulb
+    switch.back_porch_lights:
+      icon: mdi:wall-sconce
+    light.kitchen_lights:
+      icon: mdi:spotlight-beam
+    switch.kitchen_foyer_lights:
+      icon: mdi:spotlight-beam
+    switch.front_porch_lights:
+      icon: mdi:wall-sconce
+    
+    # Zoos/Monoprice 15902/Vision ZP3111 Motion Sensor entities
+    binary_sensor.vision_zp3111_multisensor_4in1_sensor:
+      hidden: true
+    sensor.vision_zp3111_multisensor_4in1_alarm_type:
+      hidden: true
+    sensor.vision_zp3111_multisensor_4in1_clock:
+      hidden: true
+    sensor.vision_zp3111_multisensor_4in1_emergency:
+      hidden: true
+    sensor.vision_zp3111_multisensor_4in1_homehealth:
+      hidden: true
+    sensor.vision_zp3111_multisensor_4in1_power_management:
+      hidden: true
+    sensor.vision_zp3111_multisensor_4in1_sourcenodeid:
+      hidden: true
+    sensor.vision_zp3111_multisensor_4in1_alarm_level:
+      hidden: false
+    sensor.vision_zp3111_multisensor_4in1_burglar:
+      hidden: false
+    sensor.basement_stairs_motion_sensor_luminance:
+      device_class: illumination
+    sensor.basement_stairs_motion_sensor_relative_humidity:
+      device_class: humidity
+
+    # Ecolink Living Room Motion Detector entities:
+    binary_sensor.living_room_motion_sensor:
+      hidden: false
+      device_class: motion
+    sensor.living_room_motion_detector_alarm_level:
+      hidden: true
+    sensor.living_room_motion_detector_alarm_type:
+      hidden: true
+    sensor.living_room_motion_detector_burglar:
+      hidden: true
+    sensor.living_room_motion_detector_power_management:
+      hidden: true
+    sensor.living_room_motion_detector_sourcenodeid:
+      hidden: true
+    zwave.living_room_motion_sensor:
+      hidden: false
+
+binary_sensor:
+  - platform: template
+    sensors:
+      basement_stairs_motion_sensor:
+        # For some reason the Monoprice 15902 doesn't actually report via the binary_sensor
+        # that is automatically created. But the burlar sensor will change to 0 when the PIR
+        # is triggered, so this template converts it into what we expect.
+        friendly_name: Basement Stairs Motion Sensor
+        device_class: motion
+        value_template: "{{ states('sensor.basement_motion_sensor_alarm_level')|float > 0 }}"
+
+sensor:
+  - platform: template
+    sensors:
+      basement_stairs_motion_sensor_battery:
+        friendly_name: Basement stairs motion sensor battery
+        device_class: battery
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('zwave.basement_stairs_motion_sensor', 'battery_level') }}"
+      back_door_contact_sensor_battery:
+        friendly_name: Back door contact sensor battery
+        device_class: battery
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('zwave.back_door_contact_sensor', 'battery_level') }}"
+      front_door_contact_sensor_battery:
+        friendly_name: Front door contact sensor battery
+        device_class: battery
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('zwave.front_door_contact_sensor', 'battery_level') }}"
+      garage_interior_door_contact_sensor_battery:
+        friendly_name: Garage interior door contact sensor battery
+        device_class: battery
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('zwave.garage_interior_door_contact_sensor', 'battery_level') }}"
+      living_room_motion_sensor_battery:
+        friendly_name: Living Room Motion Sensor Battery
+        device_class: battery
+        unit_of_measurement: "%"
+        value_template: "{{ state_attr('zwave.living_room_motion_sensor', 'battery_level') }}"
+
+zwave:
+  usb_path: /dev/ttyACM0
+  polling_interval: 30000
+  network_key: !secret zwave_network_key
+  device_config:
+    # This seems to help with state refresh issues
+    light.living_room_hanging_light:
+      refresh_value: true
+      polling_intensity: 1
+      delay: 5
+    light.basement_stairs_lights:
+      refresh_value: true
+      polling_intensity: 1
+      delay: 5
+    light.kitchen_lights:
+      refresh_value: true
+      polling_intensity: 1
+      delay: 5
+    light.front_hall_table_lamp:
+      refresh_value: true
+      polling_intensity: 1
+      delay: 5
+      

@@ -1,0 +1,14 @@
+homeassistant:
+  customize:
+    group.all_automations:
+      hidden: false
+    group.all_scripts:
+      hidden: false
+
+group:
+  automation_view:
+    name: Automation
+    view: true
+    entities:
+      - group.all_automations
+      - group.all_scripts

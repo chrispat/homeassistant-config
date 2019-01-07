@@ -1,0 +1,51 @@
+# Available entities
+# ------------------
+# binary_sensor.x3_xdrive30i_brake_fluid_status_ok	
+# binary_sensor.x3_xdrive30i_check_control_messages
+# binary_sensor.x3_xdrive30i_condition_based_services
+# binary_sensor.x3_xdrive30i_door_lock_state
+# binary_sensor.x3_xdrive30i_lids
+# binary_sensor.x3_xdrive30i_lights_parking
+# binary_sensor.x3_xdrive30i_oil_status_ok
+# binary_sensor.x3_xdrive30i_vehicle_check_status_ok
+# binary_sensor.x3_xdrive30i_windows
+# lock.x3_xdrive30i_lock
+# sensor.x3_xdrive30i_mileage
+# sensor.x3_xdrive30i_remaining_fuel
+# sensor.x3_xdrive30i_remaining_fuel_percent
+# sensor.x3_xdrive30i_remaining_range_fuel
+# sensor.x3_xdrive30i_remaining_range_total
+
+title: BMW
+cards:
+  - type: picture-glance
+    title: BMW X3 30i
+    entities:
+      - binary_sensor.x3_xdrive30i_check_control_messages
+      - binary_sensor.x3_xdrive30i_condition_based_services
+      - sensor.x3_xdrive30i_remaining_fuel_percent
+      - lock.x3_xdrive30i_lock
+    image: /local/images/BMW-X3.jpg
+    
+  # - type: glance
+  #   # title: Door Locks
+  #   show_header_toggle: false
+  #   entities:
+  #     - lock.x3_xdrive30i_lock
+
+  - type: custom:monster-card
+    card:
+      type: glance
+      title: BMW Sensor
+    filter:
+      include:
+        - entity_id: "sensor.x3_xdrive30i*"
+        - entity_id: "binary_sensor.x3_xdrive30i*"
+
+  - type: custom:entity-attributes-card
+    title: BMW Attributes
+    heading_name: List
+    heading_state: States
+    filter:
+      include:
+        - key: "binary_sensor.x3_xdrive30i_condition_based_services.*"

@@ -1,0 +1,10 @@
+homeassistant:
+  customize:
+    media_player.roku_12c2c3054287:
+      friendly_name: Guest Bedroom Roku
+    media_player.samsung_led55_un55f6300:
+      friendly_name: Living Room TV
+    media_player.samsung_wireless_audio_hwk950:
+      friendly_name: Basement Soundbar
+    media_player.xbr65x900e:
+      friendly_name: Basement TV

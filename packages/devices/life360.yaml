@@ -1,0 +1,22 @@
+homeassistant:
+  customize:
+    device_tracker.life360_emily:
+      friendly_name: Emily
+    device_tracker.life360_finn:
+      friendly_name: Finn
+    device_tracker.life360_hadley:
+      friendly_name: Hadley
+    device_tracker.life360_peter_provost:
+      friendly_name: Peter
+
+device_tracker:
+  - platform: life360
+    username: !secret life360_username
+    password: !secret life360_password
+    prefix: life360
+    show_as_state: driving, moving, places
+    driving_speed: 18
+    max_gps_accuracy: 200
+    max_update_wait:
+      minutes: 45
+

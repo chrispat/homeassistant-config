@@ -1,0 +1,23 @@
+automation:
+  - alias: "Mode Lights - Only when Night or Away, all lights Off at 1:00am, repeating every 60m"
+    trigger:
+      - platform: time
+        at: "00:00"
+      - platform: time
+        minutes: '/60'
+        seconds: 00
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.select_option
+          state: 'Night'
+        - condition: state
+          entity_id: input_select.select_option
+          state: 'Away'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: group.all_lights
+      - service: homeassistant.turn_off
+        entity_id: group.all_switches
+

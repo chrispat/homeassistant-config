@@ -1,0 +1,21 @@
+homeassistant:
+  customize:
+    device_tracker.peter_composite:
+      friendly_name: Peter
+
+# Note: you can edit the known_devices.yaml file to change the image used by a composite
+
+device_tracker:
+  - platform: composite
+    name: peter_composite
+    entity_id:
+      - device_tracker.life360_peter_provost
+      - device_tracker.peters_iphone
+
+group:
+  house_occupied:
+    entities:
+      - device_tracker.life360_emily
+      # - device_tracker.life360_finn
+      - device_tracker.life360_hadley
+      - device_tracker.peter_composite

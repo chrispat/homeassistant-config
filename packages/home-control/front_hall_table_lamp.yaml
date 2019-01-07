@@ -1,0 +1,17 @@
+automation:
+  - alias: Front hall table lamp - On at sunset - 45m
+    trigger:
+      platform: sun
+      event: sunset
+      offset: '-00:50:00'
+    action:
+      service: light.turn_on
+      entity_id: light.front_hall_table_lamp
+
+  - alias: Front hall table lamp - Off at 10:00pm
+    trigger:
+      platform: time
+      at: "22:00:00"
+    action:
+      service: light.turn_off
+      entity_id: light.front_hall_table_lamp

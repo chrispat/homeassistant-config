@@ -1,0 +1,16 @@
+ecobee:
+  api_key: "tRKaznC8ujoiB8PkHH7YhKyeO8JnlHBz"
+
+sensor:
+  - platform: template
+    sensors:
+      upstairs_thermostat_target_high:
+        value_template: "{{ state_attr('climate.master_bedroom', 'target_temp_high') }}"
+        friendly_name: Upstairs thermostat target (high)
+        device_class: temperature
+        unit_of_measurement: °F
+      upstairs_thermostat_target_low:
+        value_template: "{{ state_attr('climate.master_bedroom', 'target_temp_low') }}"
+        friendly_name: Upstairs thermostat target (low)
+        device_class: temperature
+        unit_of_measurement: °F

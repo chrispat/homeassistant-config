@@ -1,0 +1,11 @@
+title: Media Players
+cards:
+  - type: custom:monster-card
+    card:
+      type: entities
+    filter:
+      include:
+        - domain: media_player
+          options:
+            type: "custom:mini-media-player"
+            group: true
