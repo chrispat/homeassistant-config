@@ -1,0 +1,35 @@
+# Example configuration.yaml entry
+sabnzbd:
+  api_key: !secret sabnzbd_api_key
+  host: 192.168.135.188
+  name: sab
+  port: 8080
+  ssl: false
+  sensors:
+    - current_status
+    - speed
+    - queue_size
+    - queue_remaining
+    - disk_size
+    - disk_free
+    - queue_count
+    - day_size
+    - week_size
+    - month_size
+    - total_size
+
+group:
+  all_sabnzbd_sensors:
+    name: All Sabnzbd Sensors
+    entities:
+      - sensor.sab_daily_total
+      - sensor.sab_disk
+      - sensor.sab_disk_free
+      - sensor.sab_left
+      - sensor.sab_monthly_total
+      - sensor.sab_queue
+      - sensor.sab_queue_count
+      - sensor.sab_speed
+      - sensor.sab_status
+      - sensor.sab_total
+      - sensor.sab_weekly_total

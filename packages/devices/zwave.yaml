@@ -73,7 +73,7 @@ binary_sensor:
     sensors:
       basement_stairs_motion_sensor:
         # For some reason the Monoprice 15902 doesn't actually report via the binary_sensor
-        # that is automatically created. But the burlar sensor will change to 0 when the PIR
+        # that is automatically created. But the alarm_level will change from 0 when the PIR
         # is triggered, so this template converts it into what we expect.
         friendly_name: Basement Stairs Motion Sensor
         device_class: motion

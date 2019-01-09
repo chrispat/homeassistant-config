@@ -5,3 +5,10 @@
         unit_of_measurement: "°F"
         device_class: temperature
         value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+    - 'time_utc'

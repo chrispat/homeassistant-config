@@ -26,6 +26,7 @@ views:
   - !include bmw-x3-view.yaml
   - !include all-sensors-view.yaml
   - !include all-automations-view.yaml
+  - !include network-monitoring.yaml
   
   - title: Groups
     cards:

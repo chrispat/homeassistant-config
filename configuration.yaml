@@ -77,6 +77,9 @@ shell_command:
   lovelace_gen: 'python /config/lovelace-gen.py'
 zeroconf:
 
+########################################################
+# Weblinks
+########################################################
 weblink:
   entities:
     - name: Grafana
@@ -133,18 +136,19 @@ influxdb:
       - sensor.dark_sky_temperature_0
 
 ########################################################
-# Cloud
+# Cloud / Alexa config
 ########################################################
 cloud:
   alexa:
     filter:
       include_entities:
-        group.all_lights
-        group.all_main_floor_lights
-        group.all_outside_lights
+        - group.all_lights
+        - group.all_main_floor_lights
+        - group.all_outside_lights
       include_domains:
         - light
         - switch
+    # entity_config:
 
 ########################################################
 # MQTT
@@ -153,8 +157,6 @@ mqtt:
   broker: core-mosquitto
   username: !secret mqtt_username
   password: !secret mqtt_password
-  # port: 8883
-  # certificate: auto
 
 ########################################################
 # Climate, weather & sun
@@ -164,12 +166,44 @@ weather:
     api_key: !secret darksky_api_key
 sun:
 
-
 ########################################################
 # Standard includes
 ########################################################
-automation: !include automations.yaml
+automation: !include automations.yaml   # must be here to use the built-in automation editor
 group: !include includes/group.yaml
 script: !include includes/script.yaml
 sensor: !include includes/sensor.yaml
 zone: !include includes/zones.yaml
+
+########################################################
+# Testing
+########################################################
+# input_boolean:
+#   test_routine_trigger2:
+#     name: Test Routine Trigger
+#     initial: off
+
+# binary_sensor:
+#   - platform: mqtt
+#     name: test_sensor
+#     state_topic: "test/binary_sensor/test"
+
+# automation test:
+#   - alias: Update input when binary sensor triggered on
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.test_sensor
+#         from: 'off'
+#         to: 'on'
+#     action:
+#       - service: input_boolean.turn_on
+#         entity_id: input_boolean.test_routine_trigger2
+#   - alias: Update input when binary sensor triggered off
+#     trigger:
+#       - platform: state
+#         entity_id: binary_sensor.test_sensor
+#         from: 'on'
+#         to: 'off'
+#     action:
+#       - service: input_boolean.turn_off
+#         entity_id: input_boolean.test_routine_trigger2     

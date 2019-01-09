@@ -31,11 +31,11 @@ binary_sensor:
     sensors:
       living_room_motion_in_last_30m:
         device_class: motion
-        entity_id: []
+        entity_id: sensor.time  # updates every minute
         value_template: "{{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.living_room_motion_sensor.last_updated)) < 30*60 }}"
   - platform: bayesian
     name: living_room_occupancy
-    prior: 0.65
+    prior: 0.5
     observations:
       - entity_id: light.kitchen_lights
         prob_given_true: 0.55
@@ -44,22 +44,22 @@ binary_sensor:
         to_state: 'on'
       - entity_id: media_player.living_room_tv
         prob_given_true: 0.75
-        prob_given_false: 0.25
+        prob_given_false: 0.20
         platform: state
         to_state: 'on'
       - entity_id: switch.living_room_floor_lamp
         prob_given_true: 0.70
-        prob_given_false: 0.30
+        prob_given_false: 0.20
         platform: state
         to_state: 'on'
       - entity_id: binary_sensor.living_room_motion_in_last_30m
-        prob_given_true: 0.85
+        prob_given_true: 0.75
         prob_given_false: 0.20
         platform: state
         to_state: 'on'
       - entity_id: binary_sensor.living_room_motion_sensor
-        prob_given_true: 0.90
-        prob_given_false: 0.30
+        prob_given_true: 0.80
+        prob_given_false: 0.20
         platform: state
         to_state: 'on'
 

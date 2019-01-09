@@ -1,5 +1,4 @@
-tuya:
-  username: !secret tuya_username
-  password: !secret tuya_password
-  country_code: !secret tuya_account_countrycode
-
+# tuya:
+#   username: !secret tuya_username
+#   password: !secret tuya_password
+#   country_code: !secret tuya_account_countrycode
