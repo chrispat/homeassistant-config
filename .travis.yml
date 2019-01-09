@@ -3,8 +3,8 @@ python:
   - "3.6"
 before_install:
   - mv travis/travis_secrets.yaml secrets.yaml
-  - mv travis/travis.fake_ssl_crt travis.fake_ssl_crt
-  - mv travis/travis.fake_ssl_key travis.fake_ssl_key
+  - mv travis/fake_ssl_crt.pem travis.fake_ssl_crt.pem
+  - mv travis/fake_ssl_key.pem travis.fake_ssl_key.pem
 install:
   - pip3 install homeassistant
 script:
