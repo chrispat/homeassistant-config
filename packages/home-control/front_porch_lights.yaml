@@ -1,6 +1,5 @@
 # Timeline
 #
-#   Before              motion activated, 5m on
 #   Sunrise - 1 hour    on
 #   Sunrise             off
 #   Sunset              on
@@ -67,6 +66,13 @@ automation:
       to: 'off'
       for:
         minutes: 5
+    condition:
+      condition: or
+      conditions:
+        - condition: sun
+          before: 'sunrise'
+        - condition: time
+          after: '23:00:00'
     action:
       service: switch.turn_off
       entity_id: switch.front_porch_lights
