@@ -8,14 +8,14 @@ homeassistant:
     
 
 automation:
-  - alias: "Living room - Every 5m update binary_sensor.living_room_motion_in_last_30m"
-    trigger:
-      - platform: time
-        minutes: '/5'
-        seconds: 0
-    action:
-      - service: homeassistant.update_entity
-        entity_id: binary_sensor.living_room_motion_in_last_30m
+  # - alias: "Living room - Every 5m update binary_sensor.living_room_motion_in_last_30m"
+  #   trigger:
+  #     - platform: time
+  #       minutes: '/5'
+  #       seconds: 0
+  #   action:
+  #     - service: homeassistant.update_entity
+  #       entity_id: binary_sensor.living_room_motion_in_last_30m
 
 # Jinja stuff
 # Last 30m test: {{ (as_timestamp(now()) - as_timestamp(states.binary_sensor.living_room_motion_sensor.last_updated)) < 30*60 }}
