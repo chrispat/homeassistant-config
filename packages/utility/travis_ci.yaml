@@ -27,8 +27,19 @@ automation:
       - service: persistent_notification.create
         data:
           message: "Travis triggered"
+          title: "Travis Triggered (Last Build State)"
+          notification_id: travis_triggered
+      # - service: hassio.addon_restart
+      #   data: 
+      #     addon: 'core_git_pull'
+
+  - alias: Update config HASS if travis build is successfull
+    trigger:
+      - platform: state
+        entity_id: sensor.pprovosthomeassistantconfig_last_build_id
+    action:
+      - service: persistent_notification.create
+        data:
+          message: "Travis triggered (Last Build Id)"
           title: "Travis Triggered"
           notification_id: travis_triggered
-      - service: hassio.addon_restart
-        data: 
-          addon: 'core_git_pull'
