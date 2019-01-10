@@ -48,14 +48,8 @@ views:
           include:
             - domain: zwave
 
-  - title: Updates
-    cards:
-      - type: custom:tracker-card
-        title:
-        trackers:
-          - sensor.custom_card_tracker
-          - sensor.custom_component_tracker
-  
+  - !include updates.yaml
+
   - title: Other
     cards:
       - type: custom:monster-card
@@ -76,7 +70,7 @@ views:
 
       - type: entities
         title: Sun
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - sun.sun
 

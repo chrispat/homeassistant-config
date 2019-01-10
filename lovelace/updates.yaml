@@ -1,0 +1,14 @@
+title: Updates
+cards:
+  - type: entities
+    title: TravisCI Status
+    show_header_toggle: false
+    entities:
+     - sensor.pprovost_homeassistant_config_last_build_state
+     - sensor.pprovost_homeassistant_config_last_build_id
+
+  - type: custom:tracker-card
+    title:
+    trackers:
+      - sensor.custom_card_tracker
+      - sensor.custom_component_tracker
