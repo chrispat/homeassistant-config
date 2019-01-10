@@ -20,5 +20,5 @@ pyozw.sqlite
 sabnzbd.conf
 secrets.yaml
 ui-lovelace.yaml
-# zwcfg_0xc13cc76f.xml
-# zwscene.xml
+zwcfg_0xc13cc76f.xml
+zwscene.xml
