@@ -19,6 +19,8 @@ plex.conf
 pyozw.sqlite
 sabnzbd.conf
 secrets.yaml
-ui-lovelace.yaml
 zwcfg_0xc13cc76f.xml
 zwscene.xml
+
+# Note: ui-lovelace.yaml is generated automatically... see lovelace-gen.py and associated scripts
+ui-lovelace.yaml
