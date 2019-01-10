@@ -50,6 +50,8 @@ views:
 
   - !include updates.yaml
 
+  - !include debugging.yaml
+
   - title: Other
     cards:
       - type: custom:monster-card
