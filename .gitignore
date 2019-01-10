@@ -9,7 +9,6 @@ appdaemon/compiled
 
 .ios.conf
 .ring_cache.pickle
-.secrets_backup.log
 ecobee.conf
 home-assistant_v2.db
 home-assistant.log
@@ -21,6 +20,7 @@ plex.conf
 pyozw.sqlite
 sabnzbd.conf
 secrets.yaml
+secrets_backup.log
 zwcfg_0xc13cc76f.xml
 zwscene.xml
 

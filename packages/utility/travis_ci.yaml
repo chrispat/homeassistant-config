@@ -20,14 +20,15 @@ automation:
         entity_id: sensor.pprovosthomeassistantconfig_last_build_state
         from: 'started'
         to: 'passed'
-    # condition:
-    #   - condition: state
-    #     entity_id: sensor.pprovosthomeassistantconfig_last_build_state
-    #     state: passed
     action:
       # - service: shell_command.secrets_backup
       # - delay:
       #     minutes: 1
+      - service: persistent_notification.create
+        data:
+          message: "Travis triggered"
+          title: "Travis Triggered"
+          notification_id: travis_triggered
       - service: hassio.addon_restart
         data: 
           addon: 'core_git_pull'
