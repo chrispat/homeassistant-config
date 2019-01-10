@@ -1,6 +1,11 @@
 sensor:
   - platform: travisci
     api_key: !secret github_access_token
+    repository:
+      - homeassistant-config
+    monitored_conditions:
+      - last_build_id
+      - last_build_state
 
 # automation:
 #   - id: a_config_update
