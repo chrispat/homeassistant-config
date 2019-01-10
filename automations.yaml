@@ -1,4 +1,4 @@
-- id: '1546849376877'
+- id: 'pause_all_automations_after_restart'
   alias: Pause automations for 15s on restart
   trigger:
   - event: start
