@@ -17,7 +17,7 @@
   alias: Update from github if travis last_build_state changes
   trigger:
     - platform: state
-      entity_id: sensor.pprovosthomeassistantconfig_last_build_state
+      entity_id: sensor.pprovost_homeassistant_config_last_build_state
       to: 'passed'
   action:
     - service: persistent_notification.create
@@ -30,7 +30,7 @@
   alias: Update from github if travis last_build_id changes
   trigger:
     - platform: state
-      entity_id: sensor.pprovosthomeassistantconfig_last_build_id
+      entity_id: sensor.pprovost_homeassistant_config_last_build_id
   action:
     - service: persistent_notification.create
       data:
