@@ -17,11 +17,12 @@ automation:
   - alias: Update config HASS if travis build is successfull
     trigger:
       - platform: state
-        entity_id: sensor.pprovosthomeassistantconfig_last_build_id
-    condition:
-      - condition: state
         entity_id: sensor.pprovosthomeassistantconfig_last_build_state
-        state: passed
+        to: passed
+    # condition:
+    #   - condition: state
+    #     entity_id: sensor.pprovosthomeassistantconfig_last_build_state
+    #     state: passed
     action:
       # - service: hassio.addon_stop # Requires Git Pull is set to auto-start
       #   data: 
