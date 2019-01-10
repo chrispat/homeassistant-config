@@ -18,6 +18,7 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.pprovosthomeassistantconfig_last_build_state
+        from: 'started'
         to: 'passed'
     # condition:
     #   - condition: state
