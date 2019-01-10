@@ -7,6 +7,9 @@ exec 2>&1
 
 pushd /config
 
+# Use this (should only need to do it once) if you get a host verification error from scp
+# ssh-keyscan -H home-nas.lan >> ~/.ssh/known_hosts
+
 # Skipping these:
 # scp home-assistant_v2.db peter@home-nas.lan:~/home-assistant-secrets
 # scp pyozw.sqlite peter@home-nas.lan:~/home-assistant-secrets
