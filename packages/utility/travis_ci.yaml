@@ -21,12 +21,12 @@ automation:
     condition:
       - condition: state
         entity_id: sensor.pprovosthomeassistantconfig_last_build_state
-        state: 'passed'
+        state: passed
     action:
       # - service: hassio.addon_stop # Requires Git Pull is set to auto-start
       #   data: 
       #     addon: "core_git_pull"
       # - delay: 0:01
-      - service: hassio.addon_start
+      - service: hassio.addon_restart
         data: 
           addon: "core_git_pull"
