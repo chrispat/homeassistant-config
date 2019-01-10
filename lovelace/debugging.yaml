@@ -11,7 +11,7 @@ cards:
   - type: history-graph
     title: 'Graph'
     hours_to_show: 1
-    # refresh_interval: 10
+    refresh_interval: 10
     entities:
       - sensor.pprovost_homeassistant_config_last_build_state
       - automation.update_config_hass_if_travis_build_is_successfull
