@@ -96,7 +96,8 @@ weblink:
 logger:
   default: warn
   logs:
-    homeassistant.components.mqtt: debug
+    # homeassistant.components.mqtt: debug
+    homeassistant.components.shell_command: debug
 
 ########################################################
 # Panels
