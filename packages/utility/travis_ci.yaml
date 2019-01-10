@@ -18,7 +18,7 @@ automation:
     trigger:
       - platform: state
         entity_id: sensor.pprovosthomeassistantconfig_last_build_state
-        to: passed
+        to: 'passed'
     # condition:
     #   - condition: state
     #     entity_id: sensor.pprovosthomeassistantconfig_last_build_state
@@ -29,4 +29,4 @@ automation:
           minutes: 1
       - service: hassio.addon_restart
         data: 
-          addon: "core_git_pull"
+          addon: 'core_git_pull'
