@@ -17,6 +17,7 @@ life360.conf
 OZW_Log.txt
 plex.conf
 pyozw.sqlite
+sabnzbd.conf
 secrets.yaml
 ui-lovelace.yaml
 # zwcfg_0xc13cc76f.xml
