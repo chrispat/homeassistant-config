@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Open STDOUT as $LOG_FILE file for read and write.
+exec 1<>/config/.secrets_backup.log
+# Redirect STDERR to STDOUT
+exec 2>&1
+
 pushd /config
 
 # Skipping these:

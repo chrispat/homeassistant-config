@@ -8,6 +8,7 @@ appdaemon/compiled
 
 .ios.conf
 .ring_cache.pickle
+.secrets_backup.log
 ecobee.conf
 home-assistant_v2.db
 home-assistant.log
