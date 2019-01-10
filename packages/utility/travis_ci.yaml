@@ -13,21 +13,21 @@ sensor:
 # sensor.pprovosthomeassistantconfig_last_build_id
 # sensor.pprovosthomeassistantconfig_last_build_state
 
-# automation:
-#   - id: a_config_update
-#     alias: Update config HASS if travis build is successfull
-#     trigger:
-#       - platform: state
-#         entity_id: sensor.shortblokehome_assistant_config_last_build_id
-#     condition:
-#       - condition: state
-#         entity_id: sensor.shortblokehome_assistant_config_last_build_state
-#         state: 'passed'
-#     action:
-#       - service: hassio.addon_stop # Requires Git Pull is set to auto-start
-#         data: 
-#           addon: "core_git_pull"
-#       - delay: 0:01
-#       - service: hassio.addon_start
-#         data: 
-#           addon: "core_git_pull"
+automation:
+  - id: Update Config - Travis CI Build Success
+    alias: Update config HASS if travis build is successfull
+    trigger:
+      - platform: state
+        entity_id: sensor.pprovosthomeassistantconfig_last_build_id
+    condition:
+      - condition: state
+        entity_id: sensor.pprovosthomeassistantconfig_last_build_state
+        state: 'passed'
+    action:
+      - service: hassio.addon_stop # Requires Git Pull is set to auto-start
+        data: 
+          addon: "core_git_pull"
+      - delay: 0:01
+      - service: hassio.addon_start
+        data: 
+          addon: "core_git_pull"
