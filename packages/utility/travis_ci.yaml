@@ -13,26 +13,26 @@ sensor:
 # sensor.pprovosthomeassistantconfig_last_build_id
 # sensor.pprovosthomeassistantconfig_last_build_state
 
-automation:
-  - alias: Update from github if travis last_build_state changes
-    trigger:
-      - platform: state
-        entity_id: sensor.pprovosthomeassistantconfig_last_build_state
-        to: 'passed'
-    action:
-      - service: persistent_notification.create
-        data:
-          message: "Travis triggered"
-          title: "Travis Triggered (Last Build State)"
-          notification_id: travis_triggered_state
+# automation:
+#   - alias: Update from github if travis last_build_state changes
+#     trigger:
+#       - platform: state
+#         entity_id: sensor.pprovosthomeassistantconfig_last_build_state
+#         to: 'passed'
+#     action:
+#       - service: persistent_notification.create
+#         data:
+#           message: "Travis triggered"
+#           title: "Travis Triggered (Last Build State)"
+#           notification_id: travis_triggered_state
 
-  - alias: Update from github if travis last_build_id changes
-    trigger:
-      - platform: state
-        entity_id: sensor.pprovosthomeassistantconfig_last_build_id
-    action:
-      - service: persistent_notification.create
-        data:
-          message: "Travis triggered (Last Build Id)"
-          title: "Travis Triggered"
-          notification_id: travis_triggered_id
+#   - alias: Update from github if travis last_build_id changes
+#     trigger:
+#       - platform: state
+#         entity_id: sensor.pprovosthomeassistantconfig_last_build_id
+#     action:
+#       - service: persistent_notification.create
+#         data:
+#           message: "Travis triggered (Last Build Id)"
+#           title: "Travis Triggered"
+#           notification_id: travis_triggered

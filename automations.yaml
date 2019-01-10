@@ -12,3 +12,28 @@
   - data:
       entity_id: group.all_automations
     service: automation.turn_on
+
+- id: travis_last_build_state_changed
+  alias: Update from github if travis last_build_state changes
+  trigger:
+    - platform: state
+      entity_id: sensor.pprovosthomeassistantconfig_last_build_state
+      to: 'passed'
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "Travis triggered"
+        title: "Travis Triggered (Last Build State)"
+        notification_id: travis_triggered_state
+
+- id: travis_last_build_id_changed
+  alias: Update from github if travis last_build_id changes
+  trigger:
+    - platform: state
+      entity_id: sensor.pprovosthomeassistantconfig_last_build_id
+  action:
+    - service: persistent_notification.create
+      data:
+        message: "Travis triggered (Last Build Id)"
+        title: "Travis Triggered"
+        notification_id: travis_triggered
