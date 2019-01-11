@@ -4,7 +4,6 @@ cards:
     title: TravisCI Status
     show_header_toggle: false
     entities:
-      - automation.update_from_github_if_travis_last_build_id_changes
       - automation.update_from_github_if_travis_last_build_state_changes      
       - sensor.pprovost_homeassistant_config_last_build_state
       - sensor.pprovost_homeassistant_config_last_build_id

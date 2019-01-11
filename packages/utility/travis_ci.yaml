@@ -1,5 +1,3 @@
-# See https://github.com/shortbloke/home_assistant_config/blob/master/docs/build_deploy.md
-
 sensor:
   - platform: travisci
     api_key: !secret github_access_token
@@ -8,10 +6,6 @@ sensor:
     monitored_conditions:
       - last_build_id
       - last_build_state
-
-# Available sensor names for automation
-# sensor.pprovosthomeassistantconfig_last_build_id
-# sensor.pprovosthomeassistantconfig_last_build_state
 
 automation:
   - alias: Update from github if travis last_build_state changes
