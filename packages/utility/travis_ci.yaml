@@ -15,6 +15,9 @@ automation:
         entity_id: sensor.pprovost_homeassistant_config_last_build_state
         from: 'started'
         to: 'passed'
+    condition:
+      condition: template
+      value_template: "{{ is_state_attr('sensor.pprovost_homeassistant_config_last_build_state', 'Commit Branch', 'master') }}"
     action:
       - service: persistent_notification.create
         data:
