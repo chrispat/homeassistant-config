@@ -8,4 +8,4 @@ before_install:
 install:
   - pip3 install homeassistant
 script:
-  - hass -c . --script check_config
+  - hass -c . --log-no-color --script check_config
