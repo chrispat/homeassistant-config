@@ -1,10 +1,9 @@
 ---
-
-# Basement Stair Light:
-#   module: automatic_lights
-#   class: BinaryTriggeredDelayedOffSwitch
-#   # dependencies: globals
-#   when_this: binary_sensor.front_hall_motion_sensor
-#   turn_on: switch.front_hall_lights
-#   delay: '300'
-#   turn_off: switch.front_hall_lights
+front_hall_motion_lights:
+  module: motion_lights
+  class: SimpleMotionLight
+  binary_sensor: binary_sensor.front_hall_motion_sensor
+  light: switch.front_hall_lights
+  off_delay: 300    # seconds
+  constrain_start_time: sunset - 00:30:00
+  constrain_end_time: sunrise + 00:15:00
