@@ -10,6 +10,8 @@ appdaemon/compiled
 .ios.conf
 .ring_cache.pickle
 ecobee.conf
+fake_ssl_crt.pem
+fake_ssl_key.pem
 home-assistant_v2.db
 home-assistant.log
 ip_bans.yaml
