@@ -1,5 +1,5 @@
-from appdaemon.plugins.hass import hassapi as hass
-import globals
+import appdaemon.plugins.hass.hassapi as hass
+# import globals
 
 # Config:
 #   when_this: binary sensor to use as trigger
