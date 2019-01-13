@@ -85,7 +85,11 @@ zeroconf:
 ########################################################
 weblink:
   entities:
-    - name: Grafana
+    - name: Github Repository
+      url: https://github.com/PProvost/homeassistant-config
+    - name: Travis-CI Dashboard
+      url: https://travis-ci.org/PProvost/homeassistant-config
+    - name: Grafana Dashboard
       url: !secret grafana_url
     - name: Node-red
       url: !secret node_red_url
