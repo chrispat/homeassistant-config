@@ -1,9 +1,10 @@
 ---
-Basement Stair Light:
-  module: automatic_lights
-  class: BinaryTriggeredDelayedOffSwitch
-  # dependencies: globals
-  when_this: binary_sensor.front_hall_motion_sensor
-  turn_on: switch.front_hall_lights
-  delay: '300'
-  turn_off: switch.front_hall_lights
+
+# Basement Stair Light:
+#   module: automatic_lights
+#   class: BinaryTriggeredDelayedOffSwitch
+#   # dependencies: globals
+#   when_this: binary_sensor.front_hall_motion_sensor
+#   turn_on: switch.front_hall_lights
+#   delay: '300'
+#   turn_off: switch.front_hall_lights
