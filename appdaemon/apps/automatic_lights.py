@@ -1,54 +1,40 @@
 import hassapi as hass
 import globals
 
-# App to turn lights on when motion detected then off again after a delay
-#
-# Use with constrints to activate only for the hours of darkness
-#
-# Args:
-#
-# sensor: binary sensor to use as trigger
-# entity_on : entity to turn on when detecting motion, can be a light, script, scene or anything else that can be turned on
-# entity_off : entity to turn off when detecting motion, can be a light, script or anything else that can be turned off. Can also be a scene which will be turned on
-# delay: amount of time after turning on to turn off again. If not specified defaults to 60 seconds.
-#
-# Release Notes
-#
-# Version 1.1:
-#   Add ability for other apps to cancel the timer
-#
-# Version 1.0:
-#   Initial Version
-class MotionLights(hass.Hass):
+# Config:
+#   when_this: binary sensor to use as trigger
+#   turn_on : anything that can be turned on
+#   delay: wait this many seconds (optional, default: 60)
+#   turn_off : anything that can be turned off
+class BinaryTriggeredDelayedOffSwitch(hass.Hass):
   def initialize(self):
     
     self.handle = None
     
-    # Check some Params
-
-    # Subscribe to sensors
-    if "motion_sensor" in self.args:
-      self.listen_state(self.motion, self.args["motion_sensor"])
+    # Subscribe to state changes on input trigger entity
+    if "when_this" in self.args:
+      self.listen_state(self.state_change_handler, self.args["when_this"])
     else:
-      self.log("No sensor specified, doing nothing")
+      self.log("No binary_sensor provided")
     
-  def motion(self, entity, attribute, old, new, kwargs):
+  def state_change_handler(self, entity, attribute, old, new, kwargs):
     if new == "on":
-      if "entity_on" in self.args:
-        self.log("Motion detected: turning {} on".format(self.args["entity_on"]))
-        self.turn_on(self.args["entity_on"])
+      if "turn_on" in self.args:
+        self.log("Binary sensor triggered: turning {} on".format(self.args["turn_on"]))
+        self.turn_on(self.args["turn_on"])
       if "delay" in self.args:
         delay = self.args["delay"]
       else:
         delay = 60
+      # Cancel last one if retriggered during the delay time
       self.cancel_timer(self.handle)
-      self.handle = self.run_in(self.light_off, delay)
+      # Setup the turn_off callback
+      self.handle = self.run_in(self.turn_off_callback, delay)
   
-  def light_off(self, kwargs):
-    if "entity_off" in self.args:
-        self.log("Turning {} off".format(self.args["entity_off"]))
-        self.turn_off(self.args["entity_off"])
+  def turn_off_callback(self, kwargs):
+    if "turn_off" in self.args:
+        self.log("Turning {} off".format(self.args["turn_off"]))
+        self.turn_off(self.args["turn_off"])
         
   def cancel(self):
     self.cancel_timer(self.handle)
-      
