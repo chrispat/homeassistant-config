@@ -1,9 +1,8 @@
 title: Main Floor
-# panel: true
+panel: true
 cards:
   - type: vertical-stack
     cards:
-      - type: custom:plan-coordinates
       - type: picture-elements
         image: /local/images/floorplan/main-floor.png?v=1
         elements:
