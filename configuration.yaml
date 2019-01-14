@@ -32,7 +32,7 @@ discovery:
   ignore:
     - philips_hue
   enable:
-    - dlna_dmr
+    # - dlna_dmr
 ffmpeg:
 frontend:
   javascript_version: auto
