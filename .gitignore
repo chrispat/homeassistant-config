@@ -6,6 +6,7 @@ tts
 __pycache__
 
 appdaemon/compiled
+appdaemon/*.log
 
 .ios.conf
 .ring_cache.pickle
