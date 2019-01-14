@@ -2,8 +2,12 @@
 front_hall_motion_lights:
   module: motion_lights
   class: SimpleMotionLight
-  binary_sensor: binary_sensor.front_hall_motion_sensor
-  light: switch.front_hall_lights
-  off_delay: 300    # seconds
+  
   constrain_start_time: sunset - 00:30:00
   constrain_end_time: sunrise + 00:15:00
+  
+  binary_sensors:
+    - binary_sensor.front_hall_motion_sensor
+  turn_off_delay: 300    # seconds
+  lights:
+    - switch.front_hall_lights
