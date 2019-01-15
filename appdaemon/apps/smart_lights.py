@@ -1,10 +1,14 @@
 import appdaemon.plugins.hass.hassapi as hass
 
-class SimpleMotionLight(hass.Hass):
+class SensorTriggeredLight(hass.Hass):
   """
-  Monitors a list of binary_sensors; when any turn on, turn on the lights; after
-  a configurable delay, turn them off. Retriggering during the delay period will
-  extend the delay.
+  Monitors a list of binary_sensors
+    when any turn on
+      turn on all specified lights
+    after a configurable delay
+      turn them off.
+  
+  Retriggering during the delay period will extend the delay.
 
   Arguments:
     - binary_sensors    - (list) which binary_sensors to monitor for state change
@@ -18,7 +22,7 @@ class SimpleMotionLight(hass.Hass):
     if "binary_sensors" in self.args:
       self.log("watching {}".format(self.args['binary_sensors']))
       for entity in self.args['binary_sensors']:
-        self.listen_state(self.state_change_handler, entity, new="on")
+        self.listen_state(self.state_change_handler, entity, old="off", new="on")
     else:
       self.log("argument 'binary_sensor' not provided", level = "ERROR")
       return
