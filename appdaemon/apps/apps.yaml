@@ -1,7 +1,7 @@
 ---
 front_hall_motion_lights:
-  module: motion_lights
-  class: SimpleMotionLight
+  module: smart_lights
+  class: SensorTriggeredLight
   
   constrain_start_time: sunset - 00:30:00
   constrain_end_time: sunrise + 00:15:00
@@ -11,3 +11,17 @@ front_hall_motion_lights:
   turn_off_delay: 300    # seconds
   lights:
     - switch.front_hall_lights
+
+garage_smart_lights:
+  module: smart_lights
+  class: SensorTriggeredLight
+  
+  # constrain_start_time: sunset - 00:30:00
+  # constrain_end_time: sunrise + 00:15:00
+  
+  binary_sensors:
+    - binary_sensor.garage_motion_sensor
+    - binary_sensor.garage_interior_door_contact_sensor
+  turn_off_delay: 300    # seconds
+  lights:
+    - switch.garage_lights
