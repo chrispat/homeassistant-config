@@ -162,6 +162,8 @@ cloud:
 # MQTT
 ########################################################
 mqtt:
+  discovery: true
+  discovery_prefix: esp8266
   broker: core-mosquitto
   username: !secret mqtt_username
   password: !secret mqtt_password
