@@ -20,8 +20,8 @@ class SensorTriggeredLight(hass.Hass):
     self.timer_handle = None
 
     if "binary_sensors" in self.args:
-      self.log("watching {}".format(self.args['binary_sensors']))
       for entity in self.args['binary_sensors']:
+        self.log("watching {}".format(entity))
         self.listen_state(self.state_change_handler, entity, old="off", new="on")
     else:
       self.log("argument 'binary_sensor' not provided", level = "ERROR")
@@ -34,9 +34,9 @@ class SensorTriggeredLight(hass.Hass):
       return
 
   def state_change_handler(self, entity, attribute, old, new, kwargs):
-
-    self.log("turning on {}".format(self.args['lights']))
+    self.log("state_change_handler: entity: {}, old: {}, new: {}".format(entity, old, new))
     for entity in self.args['lights']:
+      self.log("turning on {}".format(entity))
       self.turn_on(entity)
 
     if "turn_off_delay" in self.args:
@@ -52,4 +52,4 @@ class SensorTriggeredLight(hass.Hass):
   def turn_off_callback(self, kwargs):
     self.log("turning off {}".format(self.args['lights']))
     for entity in self.args['lights']:
-      self.turn_on(entity)
+      self.turn_off(entity)
