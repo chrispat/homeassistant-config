@@ -1,4 +1,18 @@
 ---
+
+back_porch_smart_lights:
+  module: smart_lights
+  class: SensorTriggeredLight
+
+  constrain_start_time: sunset - 00:30:00
+  constrain_end_time: sunrise + 00:15:00
+  
+  binary_sensors:
+    - binary_sensor.back_door_contact_sensor
+  turn_off_delay: 300    # seconds
+  lights:
+    - switch.back_porch_lights
+
 front_hall_motion_lights:
   module: smart_lights
   class: SensorTriggeredLight
@@ -15,9 +29,6 @@ front_hall_motion_lights:
 garage_smart_lights:
   module: smart_lights
   class: SensorTriggeredLight
-  
-  # constrain_start_time: sunset - 00:30:00
-  # constrain_end_time: sunrise + 00:15:00
   
   binary_sensors:
     - binary_sensor.garage_motion_sensor

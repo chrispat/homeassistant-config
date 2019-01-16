@@ -1,23 +1,23 @@
-automation:
-  - alias: Back porch lights - On when door opened (at night)
-    trigger:
-      platform: state
-      entity_id: binary_sensor.back_door_contact_sensor
-    condition:
-      condition: state
-      entity_id: sun.sun
-      state: below_horizon
-    action:
-      service: homeassistant.turn_on
-      entity_id: switch.back_porch_lights
+# automation:
+#   - alias: Back porch lights - On when door opened (at night)
+#     trigger:
+#       platform: state
+#       entity_id: binary_sensor.back_door_contact_sensor
+#     condition:
+#       condition: state
+#       entity_id: sun.sun
+#       state: below_horizon
+#     action:
+#       service: homeassistant.turn_on
+#       entity_id: switch.back_porch_lights
 
-  - alias: Back porch lights - Off when contact off for 5m (before sunrise)
-    trigger:
-      platform: state
-      entity_id: binary_sensor.back_door_contact_sensor
-      to: 'off'
-      for:
-        minutes: 5
-    action:
-      service: homeassistant.turn_off
-      entity_id: switch.back_porch_lights
+#   - alias: Back porch lights - Off when contact off for 5m (before sunrise)
+#     trigger:
+#       platform: state
+#       entity_id: binary_sensor.back_door_contact_sensor
+#       to: 'off'
+#       for:
+#         minutes: 5
+#     action:
+#       service: homeassistant.turn_off
+#       entity_id: switch.back_porch_lights
