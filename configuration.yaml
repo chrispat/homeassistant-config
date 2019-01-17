@@ -153,6 +153,7 @@ cloud:
         - group.all_lights
         - group.all_main_floor_lights
         - group.all_outside_lights
+        - group.all_upstairs_lights
       include_domains:
         - light
         - switch
