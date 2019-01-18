@@ -39,27 +39,27 @@ binary_sensor:
     observations:
       - entity_id: light.kitchen_lights
         prob_given_true: 0.55
-        prob_given_false: 0.20
+        # prob_given_false: 0.20
         platform: state
         to_state: 'on'
       - entity_id: media_player.living_room_tv
-        prob_given_true: 0.75
-        prob_given_false: 0.20
+        prob_given_true: 0.55
+        # prob_given_false: 0.20
         platform: state
         to_state: 'on'
       - entity_id: switch.living_room_floor_lamp
-        prob_given_true: 0.70
-        prob_given_false: 0.20
+        prob_given_true: 0.55
+        # prob_given_false: 0.20
         platform: state
         to_state: 'on'
-      - entity_id: binary_sensor.living_room_motion_in_last_30m
-        prob_given_true: 0.75
-        prob_given_false: 0.20
-        platform: state
-        to_state: 'on'
+      # - entity_id: binary_sensor.living_room_motion_in_last_30m
+      #   prob_given_true: 0.75
+      #   prob_given_false: 0.20
+      #   platform: state
+      #   to_state: 'on'
       - entity_id: binary_sensor.living_room_motion_sensor
-        prob_given_true: 0.80
-        prob_given_false: 0.20
+        prob_given_true: 0.60
+        # prob_given_false: 0.20
         platform: state
         to_state: 'on'
 
