@@ -16,7 +16,6 @@ jobs:
       Python36:
         python.version: '3.6'
 
-
   steps:
   - task: UsePythonVersion@0
     inputs:
@@ -33,4 +32,4 @@ jobs:
     displayName: 'Install dependencies'
 
   - script: hass -c . --log-no-color --script check_config
-    displayName: 'Build'
+    displayName: 'Check config'
