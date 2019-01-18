@@ -10,7 +10,7 @@ mv travis_secrets.yaml secrets.yaml
 write-host -fore Yellow "---------------------------"
 write-host -fore Yellow " Running hass check_config "
 write-host -fore Yellow "---------------------------"
-hass --script check_config
+hass -c . --script check_config
 
 if ($LASTEXITCODE -eq 0) {
     write-host -fore Green "SUCCESS"

@@ -26,6 +26,10 @@ group:
       - switch.kitchen_foyer_lights
       - switch.living_room_floor_lamp
 
+  all_upstairs_lights:
+    entities:
+      - light.dads_office_lights
+
   all_outside_lights:
     entities:
       - switch.back_porch_lights
