@@ -72,6 +72,10 @@ logbook:
 lovelace:
   mode: yaml
 map:
+media_player:
+  - platform: linkplay
+    host: 192.168.135.5
+    name: AudioCast 1
 recorder:
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
