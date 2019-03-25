@@ -31,5 +31,5 @@ jobs:
   - script: pip3 install homeassistant
     displayName: 'Install dependencies'
 
-  - script: hass -c . --log-no-color --script check_config
+  - script: hass -c . --script check_config
     displayName: 'Check config'
