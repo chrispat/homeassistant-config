@@ -2,6 +2,7 @@
 [![Build Status](https://dev.azure.com/chrispatmsft/Demo/_apis/build/status/chrisrpatterson.homeassistant-config?branchName=master)](https://dev.azure.com/chrispatmsft/Demo/_build/latest?definitionId=178&branchName=master)
 
 # My Home-Assistant Config
+# simple change
 
 This is my personal [Home Assistant](https://www.home-assistant.io/) configuration.
 
